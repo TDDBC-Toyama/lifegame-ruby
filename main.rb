@@ -24,7 +24,23 @@ for times in 0..2
     for j in 0..4 do
       count = 0
 
-      bb[i][j] = b[i][j]
+      if b[i][j] == '□'
+        # 誕生の場合
+        count = 0
+        if b[i-1][j-1] == '■'; count += 1 end
+        if b[i-1][j] == '■'; count += 1 end
+        if b[i-1][j+1] == '■'; count += 1 end
+        if b[i][j-1] == '■'; count += 1 end
+        if b[i][j+1] == '■'; count += 1 end
+        if i < 4 && b[i+1][j-1] == '■'; count += 1 end
+        if i < 4 && b[i+1][j] == '■'; count += 1 end
+        if i < 4 && b[i+1][j+1] == '■'; count += 1 end
+        if count >= 3
+          bb[i][j] = '■'
+        else
+          bb[i][j] = '□'
+        end
+      end
 
       if b[i][j] == '■'
         # 生存・過疎・過密の場合
